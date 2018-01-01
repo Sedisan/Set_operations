@@ -78,7 +78,9 @@ class DealWithIt(Operation):
         
     def count_it(self):
         result = self.start_program()
-        print('\n' * 100) # Yeah, High Life
+        from shutil import get_terminal_size
+        y_size_of_terminal = get_terminal_size()[1]
+        print('\n' * y_size_of_terminal) # Yeah, High Life
         print("Result of your operation:")
         user_result = set(getattr(self.get_first_set(), result)( self.get_second_set()))
         print(*user_result)
@@ -139,19 +141,22 @@ class LoadUserData(object):
             raise NameError("Incorrect data type hasn't repaired")
         except TypeError:
             raise TypeError("Error with type(probably casting string)")
-
-
-while True:
-    try:
-        start = DealWithIt()
-        print("Try it again? 1 to accept. Other number to decline")
-        exit_or_no = 0
-        exit_or_no = LoadUserData.load(exit_or_no, type(exit_or_no))
-        print(exit_or_no)
-        if exit_or_no is not 1:
-            break
-    except KeyboardInterrupt:
-        print("Program has been interrupted by keyboard")
-        break
         
-print("Thank for use. Created by:{}".format('Szymon Ryl'))
+if __name__ == "__main__":
+    while True:
+        try:
+            start = DealWithIt()
+            print("Try it again? 1 to accept. Other number to decline")
+            exit_or_no = 0
+            exit_or_no = LoadUserData.load(exit_or_no, type(exit_or_no))
+            print(exit_or_no)
+            if exit_or_no is not 1:
+                break
+        except KeyboardInterrupt:
+            print("Program has been interrupted by keyboard")
+            break
+
+author = [83, 122, 121, 109, 111, 110, 32, 82, 121, 108]
+print("Thank for use. Created by: {}".format(''.join(map(chr, author))))
+from time import sleep
+sleep(3)
